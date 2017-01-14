@@ -1,3 +1,6 @@
+// Hey! Thanks for downloading my script!
+// Please click the "Install" button to proceed!
+
 // ==UserScript==
 // @name          Message Notifier
 // @author        Hans5958
@@ -7,7 +10,9 @@
 // @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @version       1.0
+// @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
+// @resource      ding https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav
 // ==/UserScript==
 
 // Initial things to do.
@@ -39,12 +44,16 @@ function doTask() {
             document.title = originalTitle;
         } else {
             document.title = "(" + count + ") New message!";
-            setTimeout(function() {
-                document.title = "(" + count + ") " + originalTitle;
-            }, 2000);
             player.play();
         }
         originalCount = count;
+    } else {
+        if (count === 0) {
+            document.title = originalTitle;
+        } else {
+            document.title = "(" + count + ") " + originalTitle;
+        }
+        
     }
 }
 doTask();
