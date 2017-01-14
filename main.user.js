@@ -1,9 +1,14 @@
 // ==UserScript==
 // @name          Message Notifier
+// @author        Hans5958
 // @namespace     https://scratch.mit.edu/users/Hans5958
 // @description   Notifies every message, checks every 3 seconds
 // @include       https://scratch.mit.edu/*
+// @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
+// @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @version       1.0
+// @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
+// @resource      ding https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav
 // ==/UserScript==
 
 // Initial things to do.
@@ -26,10 +31,13 @@ function getCount() {
 // Here's the script.
 function doTask() {
   count = getCount()
-  if (originalCount != count) { // if the originalCount is different from the new count...
-    if (count == 0) { // ...and count not 0
+  if (originalCount != count) {
+    if (count == 0) {
       document.title = originalTitle
     } else {
+      var audioElement = document.createElement('audio');
+      audioElement.setAttribute('src', ding);
+      audioElement.play();
       document.title = "(" + count + ") New message!"
       setTimeout(function() {
         document.title = "(" + count + ") " + originalTitle
