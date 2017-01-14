@@ -1,4 +1,4 @@
-// Hey! Thanks for downloading my script!
+// Hey! Thanks for using this userscript!
 // Please click the "Install" button to proceed!
 
 // ==UserScript==
