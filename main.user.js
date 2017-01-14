@@ -8,7 +8,6 @@
 // @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @version       1.0
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
-// @resource      ding https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav
 // ==/UserScript==
 
 // Initial things to do.
