@@ -12,7 +12,6 @@
 // @version       1.1
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
-// @resource      ding https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav
 // ==/UserScript==
 
 // Initial things to do.
@@ -22,13 +21,13 @@ var count = 0;
 var player = document.createElement('audio');
 player.src = 'https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav';
 player.preload = 'auto';
-if (document.URL.slice(30,31) == '') {
-var loader = document.getElementById("navigation");
-loader.className = "loader";
-var divs = loader.getElementsByTagName("span");
-var username = divs[9].innerHTML;
+if (document.URL.slice(30, 31) == '') {
+    var loader = document.getElementById("navigation");
+    loader.className = "loader";
+    var divs = loader.getElementsByTagName("span");
+    var username = divs[9].innerHTML;
 } else {
-var username = Scratch.INIT_DATA.LOGGED_IN_USER.model.username;
+    var username = Scratch.INIT_DATA.LOGGED_IN_USER.model.username;
 }
 
 // Creating an function for getting messages count
@@ -59,9 +58,10 @@ function doTask() {
         } else {
             document.title = "(" + count + ") " + originalTitle;
         }
-        
+
     }
 }
-setInterval(function() {
+// Here's the loop.
+setInterval(function () {
     doTask();
 }, 3000);
