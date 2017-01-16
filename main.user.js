@@ -2,14 +2,14 @@
 // Please click the "Install" button to proceed!
 
 // ==UserScript==
-// @name          Message Notifier
+// @name          Scratch Message Notifier
 // @author        Hans5958
 // @namespace     https://scratch.mit.edu/users/Hans5958
 // @description   Notifies every message, checks every 3 seconds
 // @include       https://scratch.mit.edu/*
 // @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
-// @version       1.0
+// @version       1.1
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
 // @resource      ding https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav
@@ -22,12 +22,18 @@ var count = 0;
 var player = document.createElement('audio');
 player.src = 'https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav';
 player.preload = 'auto';
-
+if (document.URL.slice(30,31) == '') {
+var loader = document.getElementById("navigation");
+loader.className = "loader";
+var divs = loader.getElementsByTagName("span");
+var username = divs[9].innerHTML;
+} else {
+var username = Scratch.INIT_DATA.LOGGED_IN_USER.model.username;
+}
 
 // Creating an function for getting messages count
 // In Scratch, this is like doing a custom block.
 function getCount() {
-    var username = Scratch.INIT_DATA.LOGGED_IN_USER.model.username;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", 'https://api.scratch.mit.edu/users/' + username + '/messages/count', false);
     xmlHttp.send(null);
@@ -56,7 +62,6 @@ function doTask() {
         
     }
 }
-doTask();
 setInterval(function() {
     doTask();
 }, 3000);
