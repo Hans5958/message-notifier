@@ -25,7 +25,7 @@ var ico = $('<link id="favicon" rel="icon" type="image/x-icon" href="/favicon.ic
 ico.appendTo(document.head);
 // I need to make 2 methods for getting the username.
 // Since the new frontpage needs an tricky way to do it.
-if (document.URL.slice(30, 31) == '') {
+if (document.URL.slice(30, 31) === '') {
     var loader = document.getElementById("navigation");
     loader.className = "loader";
     var divs = loader.getElementsByTagName("span");
@@ -48,20 +48,26 @@ function getCount() {
 // Creating an function for icon changes
 // Thanks to https://github.com/MegaScratchUserscript/Mega-Scratch-Userscript/blob/master/parts/titlemessages.part.js for the script.
 function createIcon() {
-    var canvas = document.createElement('canvas')
-        , ctx
-        , img = document.createElement('img');
-    canvas.height = canvas.width = 16;
+    var canvas = document.createElement('canvas'),
+        ctx,
+        img = document.createElement('img');
+    canvas.height = canvas.width = 32;
     ctx = canvas.getContext('2d');
     img.onload = function () {
         ctx.drawImage(this, 0, 0);
-        ctx.font = 'bold 9px "helvetica", sans-serif';
+        ctx.font = 'bold 21px "helvetica", sans-serif';
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 3;
-        ctx.strokeText(count + "", 0, 15);
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillText(count + "", 0, 15);
-        link.attr({
+        if (count > 99) {
+            ctx.strokeText("99+", 0, 31);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillText("99+", 0, 31);
+        } else {
+            ctx.strokeText(count + "", 0, 31);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillText(count + "", 0, 31);
+        }
+        ico.attr({
             "type": "image/png",
             "href": canvas.toDataURL('image/png')
         });
@@ -83,7 +89,7 @@ setInterval(function () {
         }
     } else {
         document.title = originalTitle;
-        link.attr({
+        ico.attr({
             "type": "image/x-icon",
             "href": "/favicon.ico"
         });
