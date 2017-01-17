@@ -9,7 +9,7 @@
 // @include       https://scratch.mit.edu/*
 // @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
-// @version       1.2
+// @version       1.2.1
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
 // ==/UserScript==
@@ -62,8 +62,8 @@ function createIcon() {
         ctx.fillStyle = '#FFFFFF';
         ctx.fillText(count + "", 0, 15);
         link.attr({
-            "type": "image/png"
-            , "href": canvas.toDataURL('image/png')
+            "type": "image/png",
+            "href": canvas.toDataURL('image/png')
         });
     };
     img.src = '/favicon.ico';
@@ -72,23 +72,21 @@ function createIcon() {
 // Here's the script.
 setInterval(function () {
     count = $(".notificationsCount").html();
-    if (count !== 0) {
+    if (count != 0) {
         if (originalCount != count) {
-                document.title = "(" + count + ") New message!";
-                player.play();
-            }
+            document.title = "(" + count + ") New message!";
+            player.play();
             originalCount = count;
+            createIcon();
         } else {
-                document.title = "(" + count + ") " + originalTitle;
-            }
+            document.title = "(" + count + ") " + originalTitle;
         }
-        createIcon()
     } else {
         document.title = originalTitle;
         link.attr({
             "type": "image/x-icon",
             "href": "/favicon.ico"
-        })
+        });
         originalCount = 0;
-    }
+    };
 }, 3000);
