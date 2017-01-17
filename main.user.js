@@ -9,7 +9,7 @@
 // @include       https://scratch.mit.edu/*
 // @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
-// @version       1.2.2
+// @version       1.2.3
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
 // ==/UserScript==
