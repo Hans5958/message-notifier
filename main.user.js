@@ -9,7 +9,7 @@
 // @include       https://scratch.mit.edu/*
 // @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
-// @version       1.2.1
+// @version       1.2.2
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
 // ==/UserScript==
@@ -68,11 +68,11 @@ function createIcon() {
     };
     img.src = '/favicon.ico';
 }
-    
+
 // Here's the script.
 setInterval(function () {
     count = $(".notificationsCount").html();
-    if (count != 0) {
+    if (count !== 0) {
         if (originalCount != count) {
             document.title = "(" + count + ") New message!";
             player.play();
@@ -88,5 +88,5 @@ setInterval(function () {
             "href": "/favicon.ico"
         });
         originalCount = 0;
-    };
+    }
 }, 3000);
