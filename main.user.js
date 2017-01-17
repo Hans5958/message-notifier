@@ -5,11 +5,11 @@
 // @name          Scratch Message Notifier
 // @author        Hans5958
 // @namespace     https://scratch.mit.edu/users/Hans5958
-// @description   Notifies every message, checks every 3 seconds
+// @description   Notifies every message, checks every 2 seconds
 // @include       https://scratch.mit.edu/*
 // @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
-// @version       1.2.3
+// @version       1.2.3.1
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
 // ==/UserScript==
@@ -95,4 +95,4 @@ setInterval(function () {
         });
         originalCount = 0;
     }
-}, 3000);
+}, 2000);
