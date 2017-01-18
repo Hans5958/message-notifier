@@ -32,6 +32,7 @@ if (onFP()) {
     loader.className = 'loader';
     var divs = loader.getElementsByTagName('span');
     var username = divs[9].innerHTML;
+}
 
 // Creating an function for getting messages count
 // In Scratch, this is like doing a custom block.
