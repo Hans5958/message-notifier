@@ -9,7 +9,7 @@
 // @include       https://scratch.mit.edu/*
 // @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
-// @version       1.2.3.3
+// @version       1.2.4
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
 // ==/UserScript==
@@ -21,34 +21,40 @@ var count = 0;
 var player = document.createElement('audio');
 player.src = 'https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav';
 player.preload = 'auto';
-// for checking if we are on the front page.
-function onFP() {
-    return (document.URL.slice(30, 31) === '');
+// On frontpage, Scratch doesn't fetch the account-nav.json
+var Scratch;
+if (Scratch === undefined) {
+    var isFP = true;
+} else {
+    var isFP = false;
 }
-// I need to make 2 methods for getting the username.
-// Since the new frontpage needs an tricky way to do it.
-if (onFP()) {
-    var loader = document.getElementById('navigation');
-    loader.className = 'loader';
-    var divs = loader.getElementsByTagName('span');
-    var username = divs[9].innerHTML;
-}
+ 
 
+//var xmlHttp = new XMLHttpRequest();
+//xmlHttp.open('GET', 'https://scratch.mit.edu/fragment/account-nav.json, false);
+//xmlHttp.send(null);
+//var request = xmlHttp.responseText;
+//var Scratch.INIT_DATA = JSON.parse(request);
+//return parsedData.count;
 // Creating an function for getting messages count
 // In Scratch, this is like doing a custom block.
 // I will only use this on the main page.
 
 function getCount() {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open('GET', 'https://api.scratch.mit.edu/users/' + username + '/messages/count', false);
-    xmlHttp.send(null);
-    var request = xmlHttp.responseText;
-    var parsedData = JSON.parse(request);
-    return parsedData.count;
+    if (isFP) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open('GET', 'https://scratch.mit.edu/messages/ajax/get-message-count/', false);
+        xmlHttp.send(null);
+        var request = xmlHttp.responseText;
+        var parsedData = JSON.parse(request);
+        return parsedData.msg_count;
+    } else {
+        return $('.notificationsCount').html();
+    }
 }
 
 // Thanks to https://github.com/MegaScratchUserscript/Mega-Scratch-Userscript/blob/master/parts/titlemessages.part.js for the script.
-if (onFP() === false) {
+if (isFP === false) {
     var ico = $('<link id="favicon" rel="icon" type="image/x-icon" href="/favicon.ico" />');
     ico.appendTo(document.head);
 }
@@ -82,16 +88,12 @@ function createIcon() {
 }
 
 // Here's the script.
-
+if (getCount() !== undefined) {
 setInterval(function() {
-        if (onFP()) {
-            count = getCount();
-        } else {
-            count = $('.notificationsCount').html();
-        }
+    count = getCount();
         if (count == 0) {
             document.title = originalTitle;
-            if (onFP() === false) {
+            if (isFP === false) {
                 ico.attr({
                     'type': 'image/x-icon',
                     'href': '/favicon.ico'
@@ -103,7 +105,7 @@ setInterval(function() {
                 document.title = '(' + count + ') New message!';
                 player.play();
                 originalCount = count;
-                if (onFP() === false) {
+                if (isFP === false) {
                     createIcon();
                 }
             } else {
@@ -112,3 +114,6 @@ setInterval(function() {
         }
     },
     2000);
+} else {
+        console.log("Not logged in!");
+}
