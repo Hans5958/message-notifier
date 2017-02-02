@@ -9,7 +9,7 @@
 // @include       https://scratch.mit.edu/*
 // @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
-// @version       1.2.5.1
+// @version       1.2.5.2
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
 // @run-at        document-idle
@@ -24,7 +24,7 @@ player.src = 'https://raw.githubusercontent.com/Hans5958/message-notifier/master
 player.preload = 'auto';
 // On frontpage, Scratch doesn't fetch the account-nav.json
 var Scratch;
-if (typeof Scratch === 'undefined') {
+if (typeof $('.notificationsCount').html() === 'undefined') {
     var isFP = true;
 } else {
     var isFP = false;
