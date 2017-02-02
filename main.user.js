@@ -12,6 +12,7 @@
 // @version       1.2.4
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
+// @run-at        document-idle
 // ==/UserScript==
 
 // Initial things to do.
