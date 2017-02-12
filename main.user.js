@@ -9,7 +9,7 @@
 // @include       https://scratch.mit.edu/*
 // @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
 // @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
-// @version       1.2.5.3
+// @version       1.2.5.4
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
 // @run-at        document-idle
@@ -25,11 +25,10 @@ player.preload = 'auto';
 // On frontpage, Scratch doesn't fetch the account-nav.json
 var Scratch;
 if (typeof Scratch === 'undefined') {
-    var isFP = true;
+   var isFP = true;
 } else {
-    var isFP = false;
+   var isFP = false;
 }
- 
 
 //var xmlHttp = new XMLHttpRequest();
 //xmlHttp.open('GET', 'https://scratch.mit.edu/fragment/account-nav.json, false);
@@ -42,6 +41,13 @@ if (typeof Scratch === 'undefined') {
 // I will only use this on the main page.
 
 function getCount() {
+    if (isFP === false) {
+        if (typeof Scratch === 'undefined') {
+           var isFP = true;
+        } else {
+           var isFP = false;
+        }
+    }   
     if (isFP) {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open('GET', 'https://scratch.mit.edu/messages/ajax/get-message-count/', false);
