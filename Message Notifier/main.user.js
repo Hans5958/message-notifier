@@ -1,126 +1,21 @@
 // Hey! Thanks for using this userscript!
 // Please click the "Install" button to proceed!
 
+// For a fancy view of this script, visit https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/complexmain.user.js
+
 // ==UserScript==
 // @name          Scratch Message Notifier
 // @author        Hans5958
 // @namespace     https://scratch.mit.edu/users/Hans5958
 // @description   Notifies every message, checks every 2 seconds
 // @include       https://scratch.mit.edu/*
-// @updateURL     https://github.com/Hans5958/message-notifier/raw/master/main.user.js
-// @downloadURL   https://github.com/Hans5958/message-notifier/raw/master/main.user.js
-// @version       1.2.5.4
+// @updateURL     https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/main.user.js
+// @downloadURL   https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/main.user.js
+// @version       1.3
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
+// @require       http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js
 // @run-at        document-idle
 // ==/UserScript==
 
-// Initial things to do.
-var originalTitle = document.title;
-var originalCount = 0;
-var count = 0;
-var player = document.createElement('audio');
-player.src = 'https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav';
-player.preload = 'auto';
-// On frontpage, Scratch doesn't fetch the account-nav.json
-var Scratch;
-if (typeof Scratch === 'undefined') {
-   var isFP = true;
-} else {
-   var isFP = false;
-}
-
-//var xmlHttp = new XMLHttpRequest();
-//xmlHttp.open('GET', 'https://scratch.mit.edu/fragment/account-nav.json, false);
-//xmlHttp.send(null);
-//var request = xmlHttp.responseText;
-//var Scratch.INIT_DATA = JSON.parse(request);
-//return parsedData.count;
-// Creating an function for getting messages count
-// In Scratch, this is like doing a custom block.
-// I will only use this on the main page.
-
-function getCount() {
-    if (isFP === false) {
-        if (typeof Scratch === 'undefined') {
-           var isFP = true;
-        } else {
-           var isFP = false;
-        }
-    }   
-    if (isFP) {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open('GET', 'https://scratch.mit.edu/messages/ajax/get-message-count/', false);
-        xmlHttp.send(null);
-        var request = xmlHttp.responseText;
-        var parsedData = JSON.parse(request);
-        return parsedData.msg_count;
-    } else {
-        return $('.notificationsCount').html();
-    }
-}
-
-// Thanks to https://github.com/MegaScratchUserscript/Mega-Scratch-Userscript/blob/master/parts/titlemessages.part.js for the script.
-if (isFP === false) {
-    var ico = $('<link id="favicon" rel="icon" type="image/x-icon" href="/favicon.ico" />');
-    ico.appendTo(document.head);
-}
-// Creating an function for icon changes
-function createIcon() {
-    var canvas = document.createElement('canvas'),
-        ctx,
-        img = document.createElement('img');
-    canvas.height = canvas.width = 32;
-    ctx = canvas.getContext('2d');
-    img.onload = function() {
-        ctx.drawImage(this, 0, 0);
-        ctx.font = 'bold 21px "helvetica", sans-serif';
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 3;
-        if (count > 99) {
-            ctx.strokeText('99+', 0, 31);
-            ctx.fillStyle = '#FFFFFF';
-            ctx.fillText('99+', 0, 31);
-        } else {
-            ctx.strokeText(count + '', 0, 31);
-            ctx.fillStyle = '#FFFFFF';
-            ctx.fillText(count + '', 0, 31);
-        }
-        ico.attr({
-            'type': 'image/png',
-            'href': canvas.toDataURL('image/png')
-        });
-    };
-    img.src = '/favicon.ico';
-}
-
-// Here's the script.
-if (getCount() !== undefined) {
-setInterval(function() {
-    count = getCount();
-        if (count == 0) {
-            document.title = originalTitle;
-            if (isFP === false) {
-                ico.attr({
-                    'type': 'image/x-icon',
-                    'href': '/favicon.ico'
-                });
-            }
-            originalCount = 0;
-        } else {
-            if (originalCount != count) {
-                document.title = '(' + count + ') New message!';
-                player.play();
-                originalCount = count;
-                if (isFP === false) {
-                    createIcon();
-                }
-            } else {
-                document.title = '(' + count + ') ' + originalTitle;
-            }
-        }
-    },
-    2000);
-} else {
-        console.log("Not logged in!");
-}
+var Scratch,originalTitle=document.title,originalCount=0,count=0,player=document.createElement("audio");if(player.src="https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav",player.preload="auto",void 0===Scratch)var isFP=!0;else isFP=!1;function getCount(){return $(".notificationsCount").length?$(".notificationsCount").html():$(".message-count").html()}var ico=$('<link id="favicon" rel="icon" type="image/x-icon" href="/favicon.ico" />');function createIcon(){var t,e=document.createElement("canvas"),o=document.createElement("img");e.height=e.width=32,t=e.getContext("2d"),o.onload=function(){t.drawImage(this,0,0),t.font='bold 21px "helvetica", sans-serif',t.strokeStyle="black",t.lineWidth=3,count>99?(t.strokeText("99+",0,31),t.fillStyle="#FFFFFF",t.fillText("99+",0,31)):(t.strokeText(count+"",0,31),t.fillStyle="#FFFFFF",t.fillText(count+"",0,31)),ico.attr({type:"image/png",href:e.toDataURL("image/png")})},o.src="/favicon.ico"}ico.appendTo(document.head),void 0!==getCount()?setInterval(function(){0==(count=getCount())?(document.title=originalTitle,ico.attr({type:"image/x-icon",href:"/favicon.ico"}),originalCount=0):originalCount!=count?(document.title="("+count+") New message!",player.play(),originalCount=count,createIcon()):document.title="("+count+") "+originalTitle},2e3):console.log("Not logged in!");
