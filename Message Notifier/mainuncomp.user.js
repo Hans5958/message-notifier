@@ -11,7 +11,7 @@
 // @downloadURL   https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/main.user.js
 // @version       1.3
 // @grant         none
-// @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
+// @icon          https://raw.githubusercontent.com/Hans5958/scratch-userscripts/master/Message%20Notifier/icon.png
 // @require       http://code.jquery.com/jquery-3.3.1.min.js
 // @run-at        document-idle
 // ==/UserScript==
@@ -48,7 +48,7 @@ var aa = "play"
 var bb = "attr"
 var cc = "onload"
 
-n[b] = 'https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav';
+n[b] = 'https://raw.githubusercontent.com/Hans5958/message-notifier/master/Message%20Notifier/notificationsound.wav';
 n[c] = 'auto';
 // On frontpage, Scratch doesn't fetch the acg-nav.json
 /*

@@ -11,7 +11,7 @@
 // @downloadURL   https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/main.user.js
 // @version       1.3
 // @grant         none
-// @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
+// @icon          https://raw.githubusercontent.com/Hans5958/scratch-userscripts/master/Message%20Notifier/icon.png
 // @require       http://code.jquery.com/jquery-3.3.1.min.js
 // @run-at        document-idle
 // ==/UserScript==
@@ -22,11 +22,12 @@ function MSGLog(log) {
 	console.log("[MSG]" + log)
 }
 
+MSGLog("Preparing...");
 var originalTitle = document.title;
 var originalCount = 0;
 var count = 0;
 var player = document.createElement('audio');
-player.src = 'https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav';
+player.src = 'https://raw.githubusercontent.com/Hans5958/message-notifier/master/Message%20Notifier/notificationsound.wav';
 player.preload = 'auto';
 // On frontpage, Scratch doesn't fetch the account-nav.json
 /*
@@ -119,6 +120,7 @@ function createIcon() {
 // Here's the script.
 if (getCount() !== undefined) {
 setInterval(function() {
+	MSGLog("Starting...");
     count = getCount();
         if (count == 0) {
             document.title = originalTitle;
@@ -140,5 +142,5 @@ setInterval(function() {
     },
     2000);
 } else {
-        console.log("[MSGNOTIFY] User not logged in.");
+	MSGLog("User not logged in.");
 }
