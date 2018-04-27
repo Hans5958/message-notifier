@@ -1,7 +1,11 @@
-// Hey! Thanks for using this userscript!
-// Please click the "Install" button to proceed!
+/*
+Hey! Thanks for using this userscript!
+Please click the "Install" button to proceed!
 
-// For a fancy view of this script, visit https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/complexmain.user.js
+For a fancy view of this script, visit these links.
+https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/complexmain.user.js
+https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/mainuncomp.user.js
+*/
 
 // ==UserScript==
 // @name          Scratch Message Notifier
@@ -14,8 +18,8 @@
 // @version       1.3
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/message-notifier/master/icon.png
-// @require       http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js
+// @require       http://code.jquery.com/jquery-3.3.1.min.js
 // @run-at        document-idle
 // ==/UserScript==
 
-var Scratch,originalTitle=document.title,originalCount=0,count=0,player=document.createElement("audio");if(player.src="https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav",player.preload="auto",void 0===Scratch)var isFP=!0;else isFP=!1;function getCount(){return $(".notificationsCount").length?$(".notificationsCount").html():$(".message-count").html()}var ico=$('<link id="favicon" rel="icon" type="image/x-icon" href="/favicon.ico" />');function createIcon(){var t,e=document.createElement("canvas"),o=document.createElement("img");e.height=e.width=32,t=e.getContext("2d"),o.onload=function(){t.drawImage(this,0,0),t.font='bold 21px "helvetica", sans-serif',t.strokeStyle="black",t.lineWidth=3,count>99?(t.strokeText("99+",0,31),t.fillStyle="#FFFFFF",t.fillText("99+",0,31)):(t.strokeText(count+"",0,31),t.fillStyle="#FFFFFF",t.fillText(count+"",0,31)),ico.attr({type:"image/png",href:e.toDataURL("image/png")})},o.src="/favicon.ico"}ico.appendTo(document.head),void 0!==getCount()?setInterval(function(){0==(count=getCount())?(document.title=originalTitle,ico.attr({type:"image/x-icon",href:"/favicon.ico"}),originalCount=0):originalCount!=count?(document.title="("+count+") New message!",player.play(),originalCount=count,createIcon()):document.title="("+count+") "+originalTitle},2e3):console.log("Not logged in!");
+var i,d=document,a="title",m=d[a],s=0,g=0,n=d[r]("a"),o="html",t=d[r]("t"),f=d[r]("f"),y=$('<link id="favicon" rel="icon" type="image/x-icon" href="/fav.ico" />'),r="createElement",b="src",c="preload",e="length",h=".notificationsCount",j=".message-count",k="strokeText",l="fillStyle",p="fillText",q="height",u=(s="width","getContext"),v="drawImage",w="font",x="strokeStyle",z="lineWidth",aa="play",bb="attr",cc="onload";function c(){return $(h)[l]?$(h)[n]():$(j)[n]()}function i(){t[q]=t[s]=32,i=t[u]("2d"),f[cc]=function(){i[v](this,0,0),i[w]='bold 21px "helvetica", sans-serif',i[x]="black",i[z]=3,g>99?(i[k]("99+",0,31),i[l]="#FFFFFF",i[p]("99+",0,31)):(i[k](g+"",0,31),i[l]="#FFFFFF",i[p](g+"",0,31)),y[bb]({type:"image/png",href:t.toDataURL("image/png")})},f[b]="/favicon.y"}n[b]="https://raw.githubusercontent.com/Hans5958/message-notifier/master/notificationsound.wav",n[c]="auto",y.appendTo(d.head),void 0!==c()&&setInterval(function(){0==(g=c())?(d[a]=m,y[bb]({type:"image/x-icon",href:"/favicon.y"}),s=0):s!=g?(d[a]="("+g+") New message!",n[aa](),s=g,i()):d[a]="("+g+") "+m},2e3);
