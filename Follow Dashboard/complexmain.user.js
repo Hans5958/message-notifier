@@ -6,6 +6,7 @@
 // @author       Hans5958
 // @match        https://scratch.mit.edu/follow
 // @grant        none
+// @require      http://code.jquery.com/jquery-3.3.1.min.js
 // ==/UserScript==
 
 //function f() {
