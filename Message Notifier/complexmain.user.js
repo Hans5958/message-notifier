@@ -9,17 +9,17 @@
 // @include       https://scratch.mit.edu/*
 // @updateURL     https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/main.user.js
 // @downloadURL   https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/main.user.js
-// @version       1.3
+// @version       1.3.1
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/scratch-userscripts/master/Message%20Notifier/icon.png
-// @require       http://code.jquery.com/jquery-3.3.1.min.js
+// @require       https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js
 // @run-at        document-idle
 // ==/UserScript==
 
 // Initial things to do.
 
 function MSGLog(log) {
-	console.log("[MSG]" + log)
+	console.log("[MSG] " + log)
 }
 
 MSGLog("Preparing...");
@@ -119,8 +119,8 @@ function createIcon() {
 
 // Here's the script.
 if (getCount() !== undefined) {
+MSGLog("Starting...");
 setInterval(function() {
-	MSGLog("Starting...");
     count = getCount();
         if (count == 0) {
             document.title = originalTitle;
