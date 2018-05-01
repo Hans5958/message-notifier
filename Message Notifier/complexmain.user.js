@@ -12,16 +12,11 @@
 // @version       1.3.1
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/scratch-userscripts/master/Message%20Notifier/icon.png
-// @require       https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js
 // @run-at        document-idle
 // ==/UserScript==
 
 // Initial things to do.
-
-function MSGLog(log) {
-	console.log("[MSG] " + log)
-}
-
+function MSGLog(log) {console.log("[MSG] " + log)}
 MSGLog("Preparing...");
 var originalTitle = document.title;
 var originalCount = 0;
@@ -57,10 +52,10 @@ we literally beat world_languages lol
 */
 
 function getCount() {
-    if ($('.notificationsCount').length) {
+   try {
         return $('.notificationsCount').html();
-    } else {
-        return $('.message-count').html();
+    } catch(e) {
+        return document.getElementsByClassName("message-count")[0].innerHTML;
     }
 }
 
