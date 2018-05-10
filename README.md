@@ -1,2 +1,19 @@
-# scratch-userscripts
-Here are my userscripts that I make for Scratch. It's still working, but please don't advertise this on Scratch.
+# Hans5958's Scratch UserSsript
+Here are my some of the user scripts that I made to improve your Scratch experience.
+
+#### Message Notifier
+Notifies the user about an incoming message, checks every 2 seconds.
+
+#### isonline.user.js
+An port of isOnlinev2 for Tampermonkey/Greasemonkey usage.
+
+#### Follow Dashboard
+Follow users with a single page. Perfect for follow accounts.
+
+#### Remove Description Box
+Puts an close button to remove the notes or the instruction box.
+
+#### Curator Links
+Creates a clickable link for the curator on the front page.
+
+You may use it with your consent. Keep in mind that you may not mention/advertise these userscript as per [this policy](https://scratch.mit.edu/discuss/post/2907564/).
