@@ -3,7 +3,8 @@
 
 // ==UserScript==
 // @name          Scratch Message Notifier
-// @author        Hans5958
+// @copyright     Hans5958
+// @license       MIT
 // @namespace     https://scratch.mit.edu/users/Hans5958
 // @description   Notifies every message, checks every 2 seconds
 // @include       https://scratch.mit.edu/*

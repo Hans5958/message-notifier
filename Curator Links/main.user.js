@@ -3,7 +3,8 @@
 // @namespace    scratch.mit.edu/users/Hans5958
 // @version      1
 // @description  Creates a clickable link for the curator on the front page.
-// @author       Hans5958
+// @copyright    Hans5958
+// @license      MIT
 // @match        http*://scratch.mit.edu/
 // @grant        none
 // ==/UserScript==

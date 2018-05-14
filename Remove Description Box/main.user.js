@@ -3,7 +3,8 @@
 // @namespace    scratch.mit.edu/users/Hans5958
 // @version      1
 // @description  Remove the instruction/notes box on Scratch
-// @author       Hans5958
+// @copyright    Hans5958
+// @license      MIT
 // @match        http*://scratch.mit.edu/projects/*
 // @grant        none
 // ==/UserScript==
