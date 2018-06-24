@@ -1,6 +1,3 @@
-// Hey! Thanks for using this userscript!
-// Please click the "Install" button to proceed!
-
 // ==UserScript==
 // @name          Scratch Message Notifier
 // @copyright     Hans5958
@@ -8,8 +5,6 @@
 // @namespace     https://scratch.mit.edu/users/Hans5958
 // @description   Notifies every message, checks every 2 seconds
 // @include       https://scratch.mit.edu/*
-// @updateURL     https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/main.user.js
-// @downloadURL   https://github.com/Hans5958/scratch-userscripts/raw/master/Message%20Notifier/main.user.js
 // @version       1.3.1
 // @grant         none
 // @icon          https://raw.githubusercontent.com/Hans5958/scratch-userscripts/master/Message%20Notifier/icon.png
